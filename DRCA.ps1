@@ -9,9 +9,18 @@ $referenceConfigurationUri = "https://raw.githubusercontent.com/flyingbluemonkey
 
 # Get the local MpPreference configuration and store it in an object
 $localConfigurationObject = Get-MpPreference
+#Sanity check
+Write-Host $localConfigurationObject.GetType()
 
 # Fetch the JSON from the URI and convert it to a PowerShell object
-$referenceConfigurationObject = Invoke-RestMethod -Uri $referenceConfigurationUri -Method Get
+$response = Invoke-WebRequest $referenceConfigurationUri
+$jsonString = $response.Content
+$parsedData = $jsonString | ConvertFrom-Json
+
+$jsonIntermediateObject = Invoke-RestMethod -Uri $referenceConfigurationUri
+$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$parsedData
+#Sanity check 2.0
+Write-Host $referenceConfigurationObject.GetType()
 
 # Compare the local configuration to the reference configuration
 $comparisonResult = Compare-Object -ReferenceObject $referenceConfigurationObject -DifferenceObject $localConfigurationObject -IncludeEqual
@@ -31,4 +40,4 @@ if ($null -eq $comparisonResult) {
 $htmlReport += "</body></html>"
 
 # Output the HTML report to a file
-$htmlReport | Out-File "C:\Users\MattEgen\OneDrive - ChromeWeb\Desktop\DRCA.html"
+$htmlReport | Out-File ".\DRCA.html"
