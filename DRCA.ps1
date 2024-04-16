@@ -13,7 +13,8 @@ $localConfigurationObject = Get-MpPreference
 Write-Host $localConfigurationObject.GetType()
  
 $jsonIntermediateObject = Invoke-RestMethod -Uri $referenceConfigurationUri
-$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$jsonIntermediateObject| ConvertFrom-Json
+$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]
+$jsonCorrected = [Text.Encoding]::UTF8.GetString([Text.Encoding]::GetEncoding(28591).GetBytes(($jsonIntermediateObject.Content))) | ConvertFrom-Json 
 #Sanity check 2.0
 Write-Host $referenceConfigurationObject.GetType()
  
@@ -35,4 +36,4 @@ if ($null -eq $comparisonResult) {
 $htmlReport += "</body></html>"
  
 # Output the HTML report to a file
-#$htmlReport | Out-File ".\DRCA.html"
+$htmlReport | Out-File ".\DRCA.html"
