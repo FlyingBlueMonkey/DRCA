@@ -12,13 +12,8 @@ $localConfigurationObject = Get-MpPreference
 #Sanity check
 Write-Host $localConfigurationObject.GetType()
 
-# Fetch the JSON from the URI and convert it to a PowerShell object
-$response = Invoke-WebRequest $referenceConfigurationUri
-$jsonString = $response.Content
-$parsedData = $jsonString | ConvertFrom-Json
-
 $jsonIntermediateObject = Invoke-RestMethod -Uri $referenceConfigurationUri
-$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$parsedData
+$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$jsonIntermediateObject| ConvertTo-CimInstance
 #Sanity check 2.0
 Write-Host $referenceConfigurationObject.GetType()
 
