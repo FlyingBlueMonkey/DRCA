@@ -13,7 +13,7 @@ $localConfigurationObject = Get-MpPreference
 Write-Host $localConfigurationObject.GetType()
 
 $jsonIntermediateObject = Invoke-RestMethod -Uri $referenceConfigurationUri
-$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$jsonIntermediateObject| ConvertTo-CimInstance
+$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]$jsonIntermediateObject| ConvertFrom-Json
 #Sanity check 2.0
 Write-Host $referenceConfigurationObject.GetType()
 
