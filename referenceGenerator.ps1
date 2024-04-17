@@ -5,3 +5,6 @@
 Import-Module Defender
 $referenceObject = Get-MpPreference
 $referenceObject | ConvertTo-Json | Out-File ".\reference.json"
+Get-Content .\reference.json | Set-Content -Encoding utf8 ".\reference-utf8.json"
+Remove-Item .\reference.json
+Rename-Item .\reference-utf8.json reference.json #dumb and hacky but it works and I don't care at this point

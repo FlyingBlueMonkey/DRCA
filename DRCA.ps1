@@ -12,7 +12,7 @@ $localConfigurationObject = Get-MpPreference
 #Sanity check
 Write-Host $localConfigurationObject.GetType()
  
-$referenceConfigurationObject = Invoke-RestMethod -Uri $referenceConfigurationUri
+$referenceConfigurationObject = [CimInstance](Invoke-RestMethod -Uri $referenceConfigurationUri)
 #$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]
 #$jsonCorrected = [Text.Encoding]::UTF8.GetString([Text.Encoding]::GetEncoding(28591).GetBytes(($jsonIntermediateObject.Content))) | ConvertFrom-Json 
 #$jsonCorrected = $jsonIntermediateObject.Content -replace '\uFEFF'
