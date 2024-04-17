@@ -6,15 +6,16 @@ Import-Module Defender
  
 # Define constants and variables
 $referenceConfigurationUri = "https://raw.githubusercontent.com/flyingbluemonkey/DRCA/main/reference.json"
- 
+#$referenceConfigurationUri = "https://raw.githubusercontent.com/CYBTWR-TAMUTO/M365DShared/main/referenceMatt.json"
 # Get the local MpPreference configuration and store it in an object
 $localConfigurationObject = Get-MpPreference
 #Sanity check
 Write-Host $localConfigurationObject.GetType()
  
-$jsonIntermediateObject = Invoke-RestMethod -Uri $referenceConfigurationUri
-$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]
-$jsonCorrected = [Text.Encoding]::UTF8.GetString([Text.Encoding]::GetEncoding(28591).GetBytes(($jsonIntermediateObject.Content))) | ConvertFrom-Json 
+$referenceConfigurationObject = Invoke-RestMethod -Uri $referenceConfigurationUri
+#$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]
+#$jsonCorrected = [Text.Encoding]::UTF8.GetString([Text.Encoding]::GetEncoding(28591).GetBytes(($jsonIntermediateObject.Content))) | ConvertFrom-Json 
+#$jsonCorrected = $jsonIntermediateObject.Content -replace '\uFEFF'
 #Sanity check 2.0
 Write-Host $referenceConfigurationObject.GetType()
  
