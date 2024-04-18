@@ -146,7 +146,7 @@
                                          ],
                      "CimSystemProperties":  {
                                                  "Namespace":  "root/Microsoft/Windows/Defender",
-                                                 "ServerName":  "WODIN-II",
+                                                 "ServerName":  "REFERENCE-PC",
                                                  "ClassName":  "MSFT_MpPreference",
                                                  "Path":  null
                                              }
@@ -273,7 +273,7 @@
                                   },
                                   {
                                       "Name":  "ComputerID",
-                                      "Value":  "36F2C92C-D65F-02D0-D0D3-1106D92BBDAD",
+                                      "Value":  "2c5f3e2f-fd3f-4441-a60a-49b5ed226167",
                                       "CimType":  14,
                                       "Flags":  "Property, Key, ReadOnly, NotModified",
                                       "IsValueModified":  false
@@ -1065,7 +1065,7 @@
                               ],
     "CimSystemProperties":  {
                                 "Namespace":  "root/Microsoft/Windows/Defender",
-                                "ServerName":  "WODIN-II",
+                                "ServerName":  "REFERENCE-PC",
                                 "ClassName":  "MSFT_MpPreference",
                                 "Path":  null
                             },
@@ -1094,7 +1094,7 @@
     "CheckForSignaturesBeforeRunningScan":  true,
     "CloudBlockLevel":  6,
     "CloudExtendedTimeout":  0,
-    "ComputerID":  "36F2C92C-D65F-02D0-D0D3-1106D92BBDAD",
+    "ComputerID":  "2c5f3e2f-fd3f-4441-a60a-49b5ed226167",
     "ControlledFolderAccessAllowedApplications":  [
                                                       "N/A: Must be an administrator to view exclusions"
                                                   ],
