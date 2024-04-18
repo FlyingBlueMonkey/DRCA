@@ -12,12 +12,9 @@ $localConfigurationObject = Get-MpPreference
 #Sanity check
 Write-Host $localConfigurationObject.GetType()
  
-$referenceConfigurationObject = [CimInstance](Invoke-RestMethod -Uri $referenceConfigurationUri)
-#$referenceConfigurationObject = [Microsoft.Management.Infrastructure.CimInstance]
-#$jsonCorrected = [Text.Encoding]::UTF8.GetString([Text.Encoding]::GetEncoding(28591).GetBytes(($jsonIntermediateObject.Content))) | ConvertFrom-Json 
-#$jsonCorrected = $jsonIntermediateObject.Content -replace '\uFEFF'
+$referenceConfigurationObject = Invoke-RestMethod -Uri $referenceConfigurationUri
 #Sanity check 2.0
-Write-Host $referenceConfigurationObject.GetType()
+$referenceConfigurationObject.GetType()
  
 # Compare the local configuration to the reference configuration
 $comparisonResult = Compare-Object -ReferenceObject $referenceConfigurationObject -DifferenceObject $localConfigurationObject -IncludeEqual
